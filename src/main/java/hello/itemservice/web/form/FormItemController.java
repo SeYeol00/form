@@ -38,7 +38,7 @@ public class FormItemController {
 
     @ModelAttribute("itemTypes")
     public ItemType[] itemType(){
-        ItemType[] values = ItemType.values();
+        return ItemType.values();
     }
 
 
@@ -69,6 +69,7 @@ public class FormItemController {
         // 옵셔널 객체
         log.info("item.open={}",item.getOpen());
         log.info("item.regions={}", item.getRegions());
+        log.info("item.itemType={}",item.getItemType());
 
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
