@@ -40,6 +40,32 @@
 
     <hr class="my-4">
 
+    <!-- single checkbox -->
+    <div>판매 여부</div>
+    <div>
+        <div class="form-check">
+            <input type="checkbox" id="open" name="open" th:field="${item.open}" class="form-check-input" disabled>
+            <!--히든 필드는 무조건 넘어온다.-->
+            <!--이걸 쓰면 로그에서 false로 찍힐 수 있다.-->
+            <!--스프링이 이걸 통해서 알아서 체크를 해준다.-->
+            <!--<input type="hidden" name="_open" value="on"/>히든 필드 추가 -->
+            <label for="open" class="form-check-label">판매 오픈</label>
+        </div>
+    </div>
+
+    <!-- multi checkbox -->
+    <div>
+        <div>등록 지역</div>
+        <div th:each="region : ${regions}" class="form-check form-check-inline">
+            <input type="checkbox" th:field="${item.regions}" th:value="${region.key}" class="form-check-input" disabled>
+            <!--레이블은 체크박스의 아이디를 알아야한다.
+            그래서 타임리프에서는 #ids로 지원해줘서
+             prev-> 전에 있는 아이디를 인식해서 아이디를 자동으로 생성해준다.
+             prev, next가 존재해서 동적으로 아이디 인식이 가능하다.-->
+            <label th:for="${#ids.prev('regions')}" th:text="${region.value}" class="form-check-label">서울</label>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg"
